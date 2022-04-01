@@ -1,4 +1,4 @@
-#This directory is for ardc, argv in C and contains the following programs :
+#This directory is for argc, argv in C and contains the following programs :
 
 0-whatsmyname.c prints a programs name followed by a new line
 
