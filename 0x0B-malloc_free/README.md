@@ -1,5 +1,5 @@
 # This directory is for 0x0B. C - malloc, free
-### It contains scripts that do the following
+### It contains C scripts that do the following
 
 0-create_array.c - creates an array of chars, and initializes it with a specific char.
 
