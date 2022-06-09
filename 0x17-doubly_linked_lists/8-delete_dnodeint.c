@@ -1,38 +1,38 @@
 #include "lists.h"
 /**
- * delete_dnodeint_at_index - deletes the node at index index of a dlistint_t
- * @head: pointer to head pointer
- * @index: index of the node that should be deleted. Index starts at 0
- * Return: 1 if it succeeded, -1 if it failed
- */
+* delete_dnodeint_at_index - Deletes node at index of a dlistint_t linked list.
+* @head: Pointer to pointer to the linked list.
+* @index: Index of the node to be deleted.
+* Return: 1 if succeeded, -1 if not.
+*/
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	dlistint_t *tmp;
-	dlistint_t *removeNode;
-	unsigned int i;
+	dlistint_t *iterator = *head, *temp;
 
-	i = 0;
-	tmp = *head;
-	while (tmp)
+	if (!head || !*head)
+		return (-1);
+
+	if (!index)
 	{
-		if (index == 0)
-		{
-			removeNode = *head;
-			*head = removeNode->next;
-			free(removeNode);
-			return (1);
-		}
-		if (i == index - 1)
-		{
-			removeNode = tmp->next;
-			tmp->next = removeNode->next;
-			if (removeNode->next)
-				(removeNode->next)->prev = tmp;
-			free(removeNode);
-			return (1);
-		}
-		tmp = tmp->next;
-		i++;
+		*head = iterator->next;
+		if (iterator->next)
+			iterator->next->prev = NULL;
+		free(iterator);
+		return (1);
 	}
-	return (-1);
+	while (index > 1)
+	{
+		iterator = iterator->next;
+		if (!iterator)
+			return (-1);
+		index--;
+	}
+	temp = iterator->next;
+	if (!temp)
+		return (-1);
+	iterator->next = temp->next;
+	if (temp->next)
+		temp->next->prev = iterator;
+	free(temp);
+	return (1);
 }
